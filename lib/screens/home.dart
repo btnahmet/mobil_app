@@ -1,70 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class HomePage extends StatelessWidget {
-//   final String title;
-
-//   const HomePage({super.key, required this.title});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//           // appBar: AppBar(
-//           //   title: Text(title),
-//           // ),
-//           body: Column(
-//         children: [
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Cari Tanıtım")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Cari Aktarma")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Cari Destek")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Arıza Takip")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Yıllık Hizmet")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Versiyon Notu")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Diğer İşlemler")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Raporlar")),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               ElevatedButton(onPressed: () {}, child: Text("Çıkış")),
-//             ],
-//           ),
-//         ],
-//       )),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -92,7 +25,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(
                               vertical: 15), // Yüksek padding
                           textStyle: const TextStyle(
@@ -114,7 +48,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -135,7 +70,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -156,7 +92,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -177,7 +114,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -198,7 +136,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -219,7 +158,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -240,7 +180,8 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -263,7 +204,8 @@ class HomePage extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 245, 245, 229), // Buton rengi açık krem
+                          backgroundColor: Color.fromARGB(
+                              255, 245, 245, 229), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 18,
