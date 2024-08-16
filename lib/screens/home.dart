@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobil_app/screens/cari_aktarma/cari_aktarma.dart';
 import 'package:mobil_app/screens/cari_tanitim/cari_tanitim.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         //backgroundColor: Colors.grey[200], // Arka plan rengi çok açık gri
         backgroundColor:
-            Color.fromARGB(255, 240, 240, 240), // Buton rengi açık krem
+            const Color.fromARGB(255, 240, 240, 240), // Buton rengi açık krem
 
         body: Padding(
           padding: const EdgeInsets.all(16.0), // Ana padding
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(
                               vertical: 15), // Yüksek padding
@@ -55,9 +56,17 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const CariAktarma(title: ""),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -79,7 +88,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -101,7 +110,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -123,7 +132,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -145,7 +154,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -167,7 +176,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -189,7 +198,7 @@ class HomePage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(
@@ -213,7 +222,7 @@ class HomePage extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(
+                          backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           textStyle: const TextStyle(

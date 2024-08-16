@@ -38,9 +38,9 @@ class _KayitEklemeState extends State<KayitEkleme> {
     double deviceHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 233, 233, 231),
+        backgroundColor: const Color.fromARGB(255, 233, 233, 231),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 224, 224, 203),
+          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
           title: const Text(
             'KAYIT FORMU',
             style: TextStyle(fontWeight: FontWeight.bold),
@@ -58,7 +58,7 @@ class _KayitEklemeState extends State<KayitEkleme> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: text,
-                              border: OutlineInputBorder(),
+                              border: const OutlineInputBorder(),
                             ),
                             // onChanged ve diğer işlevler eklenecekse burada tanımlanabilir
                           ),
@@ -67,12 +67,12 @@ class _KayitEklemeState extends State<KayitEkleme> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'GİB Durum',
                           border: OutlineInputBorder(),
                         ),
                         value: _selectedGIBDurum,
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                             value: 'Aktif',
                             child: Text('Aktif'),
@@ -96,12 +96,12 @@ class _KayitEklemeState extends State<KayitEkleme> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Diğer Seçenek',
                           border: OutlineInputBorder(),
                         ),
                         value: _selectedAnotherOption,
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                             value: 'Seçenek 1',
                             child: Text('Seçenek 1'),
@@ -127,51 +127,51 @@ class _KayitEklemeState extends State<KayitEkleme> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Yeni'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                        ),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: ElevatedButton(
+                    //     onPressed: () {},
+                    //     child: Text('Yeni'),
+                    //     style: ElevatedButton.styleFrom(
+                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(width: deviceWidth/100),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text('Kaydet',
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
+                        ),
+                        child: const Text('Kaydet',
                         style: TextStyle(
                           fontSize: 12.14
                         ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                        ),
                       ),
                     ),
                     SizedBox(width: deviceWidth/100),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text('Sil'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 224, 224, 203),
+                          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
                         ),
+                        child: const Text('Sil'),
                       ),
                     ),
                     SizedBox(width: deviceWidth/100),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Kapat'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                        ),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: ElevatedButton(
+                    //     onPressed: () {
+                    //       Navigator.pop(context);
+                    //     },
+                    //     child: Text('Kapat'),
+                    //     style: ElevatedButton.styleFrom(
+                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -182,4 +182,3 @@ class _KayitEklemeState extends State<KayitEkleme> {
     );
   }
 }
-

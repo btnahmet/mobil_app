@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobil_app/screens/cari_tanitim/kayit_ekleme.dart';
+import 'package:mobil_app/screens/cari_aktarma/kayit_ekleme.dart';
 
-class CariTanitim extends StatefulWidget {
-  final String title;
+class CariAktarma extends StatefulWidget {
+  const CariAktarma({super.key, required this.title});
+    final String title;
 
-  const CariTanitim({super.key, required this.title});
 
   @override
-  State<CariTanitim> createState() => _CariTanitimState();
+  State<CariAktarma> createState() => _CariAktarmaState();
 }
 
-class _CariTanitimState extends State<CariTanitim> {
+class _CariAktarmaState extends State<CariAktarma> {
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -25,7 +25,7 @@ class _CariTanitimState extends State<CariTanitim> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "CARİ TANITIM LİSTESİ",
+                  "CARİ AKTARMA LİSTESİ",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -45,7 +45,7 @@ class _CariTanitimState extends State<CariTanitim> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const KayitEkleme(title: ""),
+                      builder: (context) => const KayitEkleme2(title: ""),
                     ),
                   );
                 },
