@@ -338,8 +338,8 @@ class _KayitEkleme3State extends State<KayitEkleme3> {
   String? _selectedGIBDurum;
   DateTime? _selectedDate1;
   DateTime? _selectedDate2;
-  
 
+  
   @override
   void initState() {
     super.initState();
