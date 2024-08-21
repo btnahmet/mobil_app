@@ -122,59 +122,35 @@ class _KayitEklemeState extends State<KayitEkleme> {
                 ),
               ),
               // Dört buton ekleme
-              Padding(
-                padding: const EdgeInsets.only(top: 0.0),
-                child: Row(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //     onPressed: () {},
-                    //     child: Text('Yeni'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(width: deviceWidth/100),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-                        ),
-                        child: const Text('Kaydet',
-                        style: TextStyle(
-                          fontSize: 12.14
-                        ),
-                        ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Form geçerliyse, işlemleri buraya ekleyin
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
                       ),
+                      child: const Text('Kaydet'),
                     ),
-                    SizedBox(width: deviceWidth/100),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-                        ),
-                        child: const Text('Sil'),
+                    ElevatedButton(
+                      onPressed: () {
+                        // İptal butonu işlemleri
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
                       ),
+                      child: const Text('İptal'),
                     ),
-                    SizedBox(width: deviceWidth/100),
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //     onPressed: () {
-                    //       Navigator.pop(context);
-                    //     },
-                    //     child: Text('Kapat'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
-              ),
             ],
           ),
         ),

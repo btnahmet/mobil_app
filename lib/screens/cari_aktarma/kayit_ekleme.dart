@@ -101,7 +101,7 @@ class _KayitEklemeState extends State<KayitEkleme2> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Tarih Seç',
                           border: OutlineInputBorder(),
                         ),
@@ -133,7 +133,7 @@ class _KayitEklemeState extends State<KayitEkleme2> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Bitiş Tarihi Seç',
                           border: OutlineInputBorder(),
                         ),
@@ -173,9 +173,9 @@ class _KayitEklemeState extends State<KayitEkleme2> {
                                 children: [
                                   TextFormField(
                                     controller: _controller1,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: "Görüşülen Kişi",
-                                      border: const OutlineInputBorder(),
+                                      border: OutlineInputBorder(),
                                     ),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -184,14 +184,14 @@ class _KayitEklemeState extends State<KayitEkleme2> {
                                       return null;
                                     },
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                       height:
                                           16.0), // İki TextFormField arasında boşluk bırakır
                                   TextFormField(
                                     controller: _controller2,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: "İlgilenen Kişi",
-                                      border: const OutlineInputBorder(),
+                                      border: OutlineInputBorder(),
                                     ),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -236,7 +236,7 @@ class _KayitEklemeState extends State<KayitEkleme2> {
                           Expanded(
                             child: TextField(
                               controller: _controller3,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: "Açıklama",
                               ),
                             )
@@ -249,60 +249,35 @@ class _KayitEklemeState extends State<KayitEkleme2> {
               ),
 
               // Dört buton ekleme
-              Padding(
-                padding: const EdgeInsets.only(top: 0.0),
-                child: Row(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //     onPressed: () {},
-                    //     child: Text('Yeni'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(width: deviceWidth / 100),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 224, 224, 203),
-                        ),
-                        child: const Text(
-                          'Kaydet',
-                          style: TextStyle(fontSize: 12.14),
-                        ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Form geçerliyse, işlemleri buraya ekleyin
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
                       ),
+                      child: const Text('Kaydet'),
                     ),
-                    SizedBox(width: deviceWidth / 100),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 224, 224, 203),
-                        ),
-                        child: const Text('Sil'),
+                    ElevatedButton(
+                      onPressed: () {
+                        // İptal butonu işlemleri
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
                       ),
+                      child: const Text('İptal'),
                     ),
-                    SizedBox(width: deviceWidth / 100),
-                    // Expanded(
-                    //   child: ElevatedButton(
-                    //     onPressed: () {
-                    //       Navigator.pop(context);
-                    //     },
-                    //     child: Text('Kapat'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       backgroundColor: Color.fromARGB(255, 224, 224, 203),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
-              ),
             ],
           ),
         ),
