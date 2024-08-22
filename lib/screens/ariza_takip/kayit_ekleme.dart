@@ -82,7 +82,7 @@ class _KayitEkleme4State extends State<KayitEkleme4> {
                   child: ListView(
                     children: [
                       ..._textValues.map((text) => Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
+                            padding: const EdgeInsets.only(bottom: 16),
                             child: TextFormField(
                               decoration: InputDecoration(
                                 labelText: text,
@@ -197,7 +197,7 @@ class _KayitEkleme4State extends State<KayitEkleme4> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(0.0),
-                        child: Container(
+                        child: SizedBox(
                           height: _itemCount *
                               70.0, // Öğelerin sayısına göre yüksekliği ayarlayın
                           child: ListView.builder(
@@ -294,7 +294,7 @@ class _KayitEkleme4State extends State<KayitEkleme4> {
                         padding: EdgeInsets.all(deviceWidth / 16),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 247, 243, 237),
+                            color: const Color.fromARGB(255, 247, 243, 237),
                             border: Border.all(
                               color: Colors.black,
                               width: 1.0,

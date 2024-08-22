@@ -3,6 +3,7 @@ import 'package:mobil_app/screens/ariza_takip/ariza_takip.dart';
 import 'package:mobil_app/screens/cari_aktarma/cari_aktarma.dart';
 import 'package:mobil_app/screens/cari_destek/cari_destek.dart';
 import 'package:mobil_app/screens/cari_tanitim/cari_tanitim.dart';
+import 'package:mobil_app/screens/yillik_hizmet/yillik_hizmet.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -16,7 +17,6 @@ class HomePage extends StatelessWidget {
         //backgroundColor: Colors.grey[200], // Arka plan rengi çok açık gri
         backgroundColor:
             const Color.fromARGB(255, 240, 240, 240), // Buton rengi açık krem
-
         body: Padding(
           padding: const EdgeInsets.all(16.0), // Ana padding
           child: Column(
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
-                              255, 247, 247, 240), // Buton rengi açık krem
+                            255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(
                               vertical: 15), // Yüksek padding
                           textStyle: const TextStyle(
@@ -89,11 +89,10 @@ class HomePage extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                           Navigator.push(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const CariDestek(title: ""),
+                              builder: (context) => const CariDestek(title: ""),
                             ),
                           );
                         },
@@ -122,8 +121,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const ArizaTakip(title: ""),
+                              builder: (context) => const ArizaTakip(title: ""),
                             ),
                           );
                         },
@@ -148,7 +146,14 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const YillikHizmet(title: ""),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
