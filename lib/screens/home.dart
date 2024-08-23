@@ -3,6 +3,8 @@ import 'package:mobil_app/screens/ariza_takip/ariza_takip.dart';
 import 'package:mobil_app/screens/cari_aktarma/cari_aktarma.dart';
 import 'package:mobil_app/screens/cari_destek/cari_destek.dart';
 import 'package:mobil_app/screens/cari_tanitim/cari_tanitim.dart';
+import 'package:mobil_app/screens/diger_islemler/diger_islemler.dart';
+import 'package:mobil_app/screens/raporlar/raporlar.dart';
 import 'package:mobil_app/screens/yillik_hizmet/yillik_hizmet.dart';
 
 class HomePage extends StatelessWidget {
@@ -197,7 +199,14 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DigerIslemler(title: ""),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
@@ -219,7 +228,14 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Raporlar(title: ""),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
