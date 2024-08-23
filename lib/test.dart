@@ -1,575 +1,261 @@
-// import 'package:flutter/material.dart';
-
-// class KayitEkleme4 extends StatefulWidget {
-//   const KayitEkleme4({super.key, required this.title});
-//   final String title;
-
-//   @override
-//   State<KayitEkleme4> createState() => _KayitEkleme4State();
-// }
-
-// class _KayitEkleme4State extends State<KayitEkleme4> {
-//   final _formKey = GlobalKey<FormState>();
-
-//   final List<String> _textValues = [
-//     "Fiş Numarası",
-//     "Cari Kodu",
-//     "Cari Ünvanı",
-//     "Cihaz SN",
-//   ];
-//   DateTime? _selectedDate1;
-//   DateTime? _selectedDate2;
-//   String? _selectedGIBDurum;
-//   final int _itemCount = 6; // Kaç tane TextFormField olduğunu belirler
-
-//   final List<TextEditingController> _controllers = [];
-
-//   final List<String> _bottomTextLabels = [
-//     "Grup Kodu",
-//     "Teslim Alan Kişi",
-//     "Teslim Eden Kişi",
-//     "Marka",
-//     "Model",
-//     "Arıza Tespit",
-//   ]; // LabelText için kullanılacak string dizisi
-//   final List<String> _bottomTextLabels2 = [
-//     "Grup Kodu",
-//     "Teslim Alan Kişi",
-//   ]; // LabelText için kullanılacak string dizisi
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     // _controllers listesini doldur
-//     for (int i = 0; i < _itemCount; i++) {
-//       _controllers.add(TextEditingController());
-//     }
-//   }
-
-//   @override
-//   void dispose() {
-//     // Controller'ları dispose et
-//     for (var controller in _controllers) {
-//       controller.dispose();
-//     }
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     double deviceWidth = MediaQuery.of(context).size.width;
-//     double deviceHeight = MediaQuery.of(context).size.height;
-
-//     return SafeArea(
-//         child: Scaffold(
-//       backgroundColor: const Color.fromARGB(255, 233, 233, 231),
-//       appBar: AppBar(
-//         backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-//         title: const Text(
-//           'KAYIT FORMU',
-//           style: TextStyle(fontWeight: FontWeight.bold),
-//         ),
-//       ),
-//       body: Padding(
-//         padding: EdgeInsets.all(deviceWidth / 20),
-//         child: Form(
-//           key: _formKey,
-//           child: Column(children: [
-//             Expanded(
-//               child: ListView(
-//                 children: [
-//                   ..._textValues.map((text) => Padding(
-//                         padding: const EdgeInsets.only(bottom: 16.0),
-//                         child: TextFormField(
-//                           decoration: InputDecoration(
-//                             labelText: text,
-//                             border: const OutlineInputBorder(),
-//                           ),
-//                           // İstenirse burada onChanged veya validator eklenebilir
-//                         ),
-//                       )),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: TextFormField(
-//                       decoration: const InputDecoration(
-//                         labelText: 'Tarih Seç',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       readOnly: true,
-//                       onTap: () async {
-//                         DateTime? pickedDate = await showDatePicker(
-//                           context: context,
-//                           initialDate: DateTime.now(),
-//                           firstDate: DateTime(2000),
-//                           lastDate: DateTime(2101),
-//                         );
-
-//                         if (pickedDate != null) {
-//                           setState(() {
-//                             _selectedDate1 = pickedDate;
-//                           });
-//                         }
-//                       },
-//                       controller: TextEditingController(
-//                         text: _selectedDate1 == null
-//                             ? ''
-//                             : _selectedDate1
-//                                 ?.toLocal()
-//                                 .toString()
-//                                 .split(' ')[0],
-//                       ),
-//                     ),
-//                   ),
-
-//                   // Bitiş Tarihi Seç
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: TextFormField(
-//                       decoration: const InputDecoration(
-//                         labelText: 'Bitiş Tarihi Seç',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       readOnly: true,
-//                       onTap: () async {
-//                         DateTime? pickedDate = await showDatePicker(
-//                           context: context,
-//                           initialDate: DateTime.now(),
-//                           firstDate: DateTime(2000),
-//                           lastDate: DateTime(2101),
-//                         );
-
-//                         if (pickedDate != null) {
-//                           setState(() {
-//                             _selectedDate2 = pickedDate;
-//                           });
-//                         }
-//                       },
-//                       controller: TextEditingController(
-//                         text: _selectedDate2 == null
-//                             ? ''
-//                             : _selectedDate2
-//                                 ?.toLocal()
-//                                 .toString()
-//                                 .split(' ')[0],
-//                       ),
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: DropdownButtonFormField<String>(
-//                       decoration: const InputDecoration(
-//                         labelText: 'İşlem Türü',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       value: _selectedGIBDurum,
-//                       items: const [
-//                         DropdownMenuItem(
-//                           value: 'Bekliyor',
-//                           child: Text('Bekliyor'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'İade Edildi',
-//                           child: Text('İade Edildi'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'Tamamlandı',
-//                           child: Text('Tamamlandı'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'Parça Bekleniyor',
-//                           child: Text('Parça Bekleniyor'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'Fiyat Onayı Bekleniyor',
-//                           child: Text('Fiyat Onayı Bekleniyor'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'Sonuçlandırılmadı ',
-//                           child: Text('Sonuçlandırılmadı'),
-//                         ),
-//                       ],
-//                       onChanged: (value) {
-//                         setState(() {
-//                           _selectedGIBDurum = value;
-//                         });
-//                       },
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.all(0.0),
-//                     child: ListView.builder(
-//                       shrinkWrap: true,
-//                       physics: const NeverScrollableScrollPhysics(),
-//                       itemCount: _itemCount,
-//                       itemBuilder: (context, index) {
-//                         return Padding(
-//                           padding: const EdgeInsets.only(bottom: 16.0),
-//                           child: TextFormField(
-//                             controller: _controllers[index],
-//                             decoration: InputDecoration(
-//                               labelText: _bottomTextLabels[index],
-//                               border: const OutlineInputBorder(),
-//                             ),
-//                             validator: (value) {
-//                               if (value == null || value.isEmpty) {
-//                                 return 'Lütfen bir metin girin';
-//                               }
-//                               return null;
-//                             },
-//                           ),
-//                         );
-//                       },
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: DropdownButtonFormField<String>(
-//                       decoration: const InputDecoration(
-//                         labelText: 'Garanti Durumu',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       value: _selectedGIBDurum,
-//                       items: const [
-//                         DropdownMenuItem(
-//                           value: 'Garantisi Var',
-//                           child: Text('Garantisi Var'),
-//                         ),
-//                         DropdownMenuItem(
-//                           value: 'Garantisi Yok',
-//                           child: Text('Garantisi Yok'),
-//                         ),
-//                       ],
-//                       onChanged: (value) {
-//                         setState(() {
-//                           _selectedGIBDurum = value;
-//                         });
-//                       },
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: DropdownButtonFormField<String>(
-//                       decoration: const InputDecoration(
-//                         labelText: 'İşlem Yapan Kişi',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       value: _selectedGIBDurum,
-//                       items: const [
-//                         DropdownMenuItem(
-//                           value: 'Ahmet',
-//                           child: Text('Ahmet'),
-//                         ),
-//                       ],
-//                       onChanged: (value) {
-//                         setState(() {
-//                           _selectedGIBDurum = value;
-//                         });
-//                       },
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ]),
-//         ),
-//       ),
-//     ));
-//   }
-// }
 import 'package:flutter/material.dart';
 
-class KayitEkleme4 extends StatefulWidget {
-  const KayitEkleme4({super.key, required this.title});
-  final String title;
-
-  @override
-  State<KayitEkleme4> createState() => _KayitEkleme4State();
+void main() {
+  runApp(const MyApp());
 }
 
-class _KayitEkleme4State extends State<KayitEkleme4> {
-  final _formKey = GlobalKey<FormState>();
-
-  final List<String> _textValues = [
-    "Fiş Numarası",
-    "Cari Kodu",
-    "Cari Ünvanı",
-    "Cihaz SN",
-  ];
-  DateTime? _selectedDate1;
-  DateTime? _selectedDate2;
-  String? _selectedGIBDurum;
-  final int _itemCount = 6; // Kaç tane TextFormField olduğunu belirler
-
-  final List<TextEditingController> _controllers = [];
-
-  final List<String> _bottomTextLabels = [
-    "Grup Kodu",
-    "Teslim Alan Kişi",
-    "Teslim Eden Kişi",
-    "Marka",
-    "Model",
-    "Arıza Tespit",
-  ]; // LabelText için kullanılacak string dizisi
-  final List<String> _bottomTextLabels2 = [
-    "Grup Kodu",
-    "Teslim Alan Kişi",
-  ]; // LabelText için kullanılacak string dizisi
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    // _controllers listesini doldur
-    for (int i = 0; i < _itemCount; i++) {
-      _controllers.add(TextEditingController());
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Form Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyFormPage(),
+    );
+  }
+}
+
+class MyFormPage extends StatefulWidget {
+  const MyFormPage({super.key});
+
+  @override
+  _MyFormPageState createState() => _MyFormPageState();
+}
+
+class _MyFormPageState extends State<MyFormPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  // Controllers for the TextFormFields
+  final List<TextEditingController> _textControllers = List.generate(8, (index) => TextEditingController());
+
+  // Date variables
+  DateTime? _selectedDate1;
+  DateTime? _selectedDate2;
+  DateTime? _selectedDate3;
+
+  // Dropdown values
+  String? _dropdownValue1;
+  String? _dropdownValue2;
+  String? _dropdownValue3;
+  String? _dropdownValue4;
+
+  // Label text arrays
+  final List<String> _textFormFieldLabels = [
+    'Text Field 1',
+    'Text Field 2',
+    'Text Field 3',
+    'Text Field 4',
+    'Text Field 5',
+    'Text Field 6',
+    'Text Field 7',
+    'Text Field 8',
+  ];
+
+  final List<String> _dropdownButtonLabels = [
+    'Dropdown 1',
+    'Dropdown 2',
+    'Dropdown 3',
+    'Dropdown 4',
+  ];
+
+  Future<void> _selectDate(BuildContext context, int dateIndex) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _getDate(dateIndex)) {
+      setState(() {
+        _setDate(dateIndex, picked);
+      });
     }
   }
 
-  @override
-  void dispose() {
-    // Controller'ları dispose et
-    for (var controller in _controllers) {
-      controller.dispose();
+  DateTime? _getDate(int index) {
+    switch (index) {
+      case 0:
+        return _selectedDate1;
+      case 1:
+        return _selectedDate2;
+      case 2:
+        return _selectedDate3;
+      default:
+        return null;
     }
-    super.dispose();
+  }
+
+  void _setDate(int index, DateTime date) {
+    switch (index) {
+      case 0:
+        _selectedDate1 = date;
+        break;
+      case 1:
+        _selectedDate2 = date;
+        break;
+      case 2:
+        _selectedDate3 = date;
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
-    double deviceHeight = MediaQuery.of(context).size.height;
-
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: const Color.fromARGB(255, 233, 233, 231),
+    return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-        title: const Text(
-          'KAYIT FORMU',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Flutter Form Example'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(deviceWidth / 20),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  ..._textValues.map((text) => Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    // 3 TextFormField Widgets
+                    for (int i = 0; i < 3; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: TextFormField(
+                          controller: _textControllers[i],
                           decoration: InputDecoration(
-                            labelText: text,
+                            labelText: _textFormFieldLabels[i],
                             border: const OutlineInputBorder(),
                           ),
-                          // İstenirse burada onChanged veya validator eklenebilir
                         ),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Tarih Seç',
-                        border: OutlineInputBorder(),
                       ),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2101),
-                        );
-
-                        if (pickedDate != null) {
-                          setState(() {
-                            _selectedDate1 = pickedDate;
-                          });
-                        }
-                      },
-                      controller: TextEditingController(
-                        text: _selectedDate1 == null
-                            ? ''
-                            : _selectedDate1
-                                ?.toLocal()
-                                .toString()
-                                .split(' ')[0],
-                      ),
-                    ),
-                  ),
-
-                  // Bitiş Tarihi Seç
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Bitiş Tarihi Seç',
-                        border: OutlineInputBorder(),
-                      ),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2101),
-                        );
-
-                        if (pickedDate != null) {
-                          setState(() {
-                            _selectedDate2 = pickedDate;
-                          });
-                        }
-                      },
-                      controller: TextEditingController(
-                        text: _selectedDate2 == null
-                            ? ''
-                            : _selectedDate2
-                                ?.toLocal()
-                                .toString()
-                                .split(' ')[0],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        labelText: 'İşlem Türü',
-                        border: OutlineInputBorder(),
-                      ),
-                      value: _selectedGIBDurum,
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'Bekliyor',
-                          child: Text('Bekliyor'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'İade Edildi',
-                          child: Text('İade Edildi'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Tamamlandı',
-                          child: Text('Tamamlandı'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Parça Bekleniyor',
-                          child: Text('Parça Bekleniyor'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Fiyat Onayı Bekleniyor',
-                          child: Text('Fiyat Onayı Bekleniyor'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Sonuçlandırılmadı ',
-                          child: Text('Sonuçlandırılmadı'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGIBDurum = value;
-                        });
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(0.0),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _itemCount,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: TextFormField(
-                            controller: _controllers[index],
-                            decoration: InputDecoration(
-                              labelText: _bottomTextLabels[index],
-                              border: const OutlineInputBorder(),
+                    // 3 DatePicker Widgets
+                    for (int i = 0; i < 3; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Selected Date ${i + 1}: ${_getDate(i)?.toLocal().toString().split(' ')[0] ?? 'No Date Selected'}',
+                              ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Lütfen bir metin girin';
-                              }
-                              return null;
-                            },
+                            ElevatedButton(
+                              onPressed: () => _selectDate(context, i),
+                              child: const Text('Select Date'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    // 4 DropdownButton Widgets
+                    for (int i = 0; i < 4; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _getDropdownValue(i),
+                          decoration: InputDecoration(
+                            labelText: _dropdownButtonLabels[i],
+                            border: const OutlineInputBorder(),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        labelText: 'Garanti Durumu',
-                        border: OutlineInputBorder(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _setDropdownValue(i, newValue);
+                            });
+                          },
+                          items: <String>['Option 1', 'Option 2', 'Option 3', 'Option 4']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                      value: _selectedGIBDurum,
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'Garantisi Var',
-                          child: Text('Garantisi Var'),
+                    // 5 TextFormField Widgets
+                    for (int i = 3; i < 8; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: TextFormField(
+                          controller: _textControllers[i],
+                          decoration: InputDecoration(
+                            labelText: _textFormFieldLabels[i],
+                            border: const OutlineInputBorder(),
+                          ),
                         ),
-                        DropdownMenuItem(
-                          value: 'Garantisi Yok',
-                          child: Text('Garantisi Yok'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGIBDurum = value;
-                        });
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        labelText: 'İşlem Yapan Kişi',
-                        border: OutlineInputBorder(),
                       ),
-                      value: _selectedGIBDurum,
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'Ahmet',
-                          child: Text('Ahmet'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedGIBDurum = value;
-                        });
-                      },
-                    ),
-                  ),
-                  // En alta eklenen yeni TextFormField'ler
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Yapılan İşlemler',
-                        border: OutlineInputBorder(),
+                  ],
+                ),
+              ),
+              // Two Expanded Buttons
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(content: Text('First Button Pressed')));
+                          }
+                        },
+                        child: const Text('First Button'),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Açıklama',
-                        border: OutlineInputBorder(),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(content: Text('Second Button Pressed')));
+                          }
+                        },
+                        child: const Text('Second Button'),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ]),
+            ],
+          ),
         ),
       ),
-    ));
+    );
+  }
+
+  String? _getDropdownValue(int index) {
+    switch (index) {
+      case 0:
+        return _dropdownValue1;
+      case 1:
+        return _dropdownValue2;
+      case 2:
+        return _dropdownValue3;
+      case 3:
+        return _dropdownValue4;
+      default:
+        return null;
+    }
+  }
+
+  void _setDropdownValue(int index, String? value) {
+    switch (index) {
+      case 0:
+        _dropdownValue1 = value;
+        break;
+      case 1:
+        _dropdownValue2 = value;
+        break;
+      case 2:
+        _dropdownValue3 = value;
+        break;
+      case 3:
+        _dropdownValue4 = value;
+        break;
+    }
   }
 }

@@ -1,158 +1,3 @@
-import 'package:flutter/material.dart';
-
-class KayitEkleme5 extends StatefulWidget {
-  const KayitEkleme5({super.key, required this.title});
-  final String title;
-
-  @override
-  State<KayitEkleme5> createState() => _KayitEkleme5State();
-}
-
-class _KayitEkleme5State extends State<KayitEkleme5> {
-  final int _itemCount = 3; // Kaç tane TextFormField olduğunu belirler
-
-  final List<TextEditingController> _controllers = [];
-
-  final List<String> _bottomTextLabels = [
-    "Grup Kodu",
-    "Teslim Alan Kişi",
-    "Teslim Eden Kişi",
-  ];
-  DateTime? _selectedDate1;
-
-  // FormKey eklendi
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < _itemCount; i++) {
-      _controllers.add(TextEditingController());
-    }
-  }
-
-  @override
-  void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
-    double deviceHeight = MediaQuery.of(context).size.height;
-
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 233, 233, 231),
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-          title: const Text(
-            'KAYIT FORMU',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(16),
-          child: Form(
-            // Form widget'ı eklendi
-            key: _formKey, // Form key bağlandı
-            child: Column(
-              // Expanded kullanımı doğru değil, Column kullanıldı
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _itemCount,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: TextFormField(
-                          controller: _controllers[index],
-                          decoration: InputDecoration(
-                            labelText: _bottomTextLabels[index],
-                            border: const OutlineInputBorder(),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Lütfen bir metin girin';
-                            }
-                            return null;
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Tarih Seç',
-                      border: OutlineInputBorder(),
-                    ),
-                    readOnly: true,
-                    onTap: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2101),
-                      );
-          
-                      if (pickedDate != null) {
-                        setState(() {
-                          _selectedDate1 = pickedDate;
-                        });
-                      }
-                    },
-                    controller: TextEditingController(
-                      text: _selectedDate1 == null
-                          ? ''
-                          : _selectedDate1?.toLocal().toString().split(' ')[0],
-                    ),
-                  ),
-                ),
-                Row(
-                  // Formun altındaki butonlar için Row kullanıldı
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Form geçerliyse, işlemleri buraya ekleyin
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(deviceWidth / 2.5, 50),
-                        backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-                      ),
-                      child: const Text('Kaydet'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // İptal butonu işlemleri
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(deviceWidth / 2.5, 50),
-                        backgroundColor: const Color.fromARGB(255, 224, 224, 203),
-                      ),
-                      child: const Text('İptal'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 // import 'package:flutter/material.dart';
 
 // class KayitEkleme5 extends StatefulWidget {
@@ -164,33 +9,87 @@ class _KayitEkleme5State extends State<KayitEkleme5> {
 // }
 
 // class _KayitEkleme5State extends State<KayitEkleme5> {
-//   final int _itemCount = 3; // Number of TextFormField widgets
-
-//   final List<TextEditingController> _controllers = [];
-//   final List<String> _bottomTextLabels = [
-//     "Grup Kodu",
-//     "Teslim Alan Kişi",
-//     "Teslim Eden Kişi",
-//   ];
-//   DateTime? _selectedDate1;
-
-//   // FormKey added
 //   final _formKey = GlobalKey<FormState>();
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     for (int i = 0; i < _itemCount; i++) {
-//       _controllers.add(TextEditingController());
+//   // Controllers for the TextFormFields
+//   final List<TextEditingController> _textControllers =
+//       List.generate(8, (index) => TextEditingController());
+
+//   // Date variables
+//   DateTime? _selectedDate1;
+//   DateTime? _selectedDate2;
+//   DateTime? _selectedDate3;
+
+//   // Dropdown values
+//   String? _dropdownValue1;
+//   String? _dropdownValue2;
+//   String? _dropdownValue3;
+//   String? _dropdownValue4;
+
+//   // Label text arrays
+//   final List<String> _textFormFieldLabels = [
+//     'Fiş Numarası',
+//     'Cari Kodu',
+//     'Cari Ünvanı',
+//     'Tutar',
+//     'Alınan Tutar',
+//     'Kalan Tutar',
+//     'Teklif',
+//     'Açıklama',
+//   ];
+
+//   final List<String> _dropdownButtonLabels = [
+//     'Bakım Anlaşması',
+//     'Durum',
+//     'Görüşme Durum',
+//     'Ödeme Türü',
+//   ];
+
+//   final List<String> _selectDate2 = [
+//     'Kurulum Tarihi',
+//     'Tarih',
+//     'Bitiş Tarih',
+//   ];
+
+//   Future<void> _selectDate(BuildContext context, int dateIndex) async {
+//     final DateTime? picked = await showDatePicker(
+//       context: context,
+//       initialDate: DateTime.now(),
+//       firstDate: DateTime(2000),
+//       lastDate: DateTime(2101),
+//     );
+//     if (picked != null && picked != _getDate(dateIndex)) {
+//       setState(() {
+//         _setDate(dateIndex, picked);
+//       });
 //     }
 //   }
 
-//   @override
-//   void dispose() {
-//     for (var controller in _controllers) {
-//       controller.dispose();
+//   DateTime? _getDate(int index) {
+//     switch (index) {
+//       case 0:
+//         return _selectedDate1;
+//       case 1:
+//         return _selectedDate2;
+//       case 2:
+//         return _selectedDate3;
+//       default:
+//         return null;
 //     }
-//     super.dispose();
+//   }
+
+//   void _setDate(int index, DateTime date) {
+//     switch (index) {
+//       case 0:
+//         _selectedDate1 = date;
+//         break;
+//       case 1:
+//         _selectedDate2 = date;
+//         break;
+//       case 2:
+//         _selectedDate3 = date;
+//         break;
+//     }
 //   }
 
 //   @override
@@ -207,100 +106,508 @@ class _KayitEkleme5State extends State<KayitEkleme5> {
 //             style: TextStyle(fontWeight: FontWeight.bold),
 //           ),
 //         ),
-//         body: SingleChildScrollView(
-//           child: Padding(
-//             padding: const EdgeInsets.all(16),
-//             child: Form(
-//               key: _formKey, // Form key bound
-//               child: Column(
-//                 children: [
-//                   ListView.builder(
-//                     shrinkWrap: true,
-//                     physics: const NeverScrollableScrollPhysics(),
-//                     itemCount: _itemCount,
-//                     itemBuilder: (context, index) {
-//                       return Padding(
-//                         padding: const EdgeInsets.only(bottom: 16),
-//                         child: TextFormField(
-//                           controller: _controllers[index],
-//                           decoration: InputDecoration(
-//                             labelText: _bottomTextLabels[index],
-//                             border: const OutlineInputBorder(),
-//                           ),
-//                           validator: (value) {
-//                             if (value == null || value.isEmpty) {
-//                               return 'Lütfen bir metin girin';
-//                             }
-//                             return null;
-//                           },
-//                         ),
-//                       );
-//                     },
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 16.0),
-//                     child: TextFormField(
-//                       decoration: const InputDecoration(
-//                         labelText: 'Tarih Seç',
-//                         border: OutlineInputBorder(),
-//                       ),
-//                       readOnly: true,
-//                       onTap: () async {
-//                         DateTime? pickedDate = await showDatePicker(
-//                           context: context,
-//                           initialDate: DateTime.now(),
-//                           firstDate: DateTime(2000),
-//                           lastDate: DateTime(2101),
-//                         );
-
-//                         if (pickedDate != null) {
-//                           setState(() {
-//                             _selectedDate1 = pickedDate;
-//                           });
-//                         }
-//                       },
-//                       controller: TextEditingController(
-//                         text: _selectedDate1 == null
-//                             ? ''
-//                             : _selectedDate1?.toLocal().toString().split(' ')[0],
-//                       ),
-//                     ),
-//                   ),
-                  
-//                   Row(
-//                     // Buttons at the bottom of the form
-//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         body: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Form(
+//             key: _formKey,
+//             child: Column(
+//               children: [
+//                 Expanded(
+//                   child: ListView(
 //                     children: [
-//                       ElevatedButton(
-//                         onPressed: () {
-//                           if (_formKey.currentState!.validate()) {
-//                             // If the form is valid, add your logic here
-//                           }
-//                         },
-//                         style: ElevatedButton.styleFrom(
-//                           minimumSize: Size(deviceWidth / 2.5, 50),
-//                           backgroundColor: const Color.fromARGB(255, 224, 224, 203),
+//                       // 3 TextFormField Widgets
+//                       for (int i = 0; i < 3; i++)
+//                         Padding(
+//                           padding: const EdgeInsets.only(bottom: 16.0),
+//                           child: TextFormField(
+//                             controller: _textControllers[i],
+//                             decoration: InputDecoration(
+//                               labelText: _textFormFieldLabels[i],
+//                               border: const OutlineInputBorder(),
+//                             ),
+//                           ),
 //                         ),
-//                         child: const Text('Kaydet'),
-//                       ),
-//                       ElevatedButton(
-//                         onPressed: () {
-//                           // Cancel button logic
-//                         },
-//                         style: ElevatedButton.styleFrom(
-//                           minimumSize: Size(deviceWidth / 2.5, 50),
-//                           backgroundColor: const Color.fromARGB(255, 224, 224, 203),
+//                       // 3 DatePicker Widgets
+//                       for (int i = 0; i < 3; i++)
+//                         Padding(
+//                           padding: const EdgeInsets.only(bottom: 16),
+//                           child: Row(
+//                             children: [
+//                               Expanded(
+//                                 child: Padding(
+//                                   padding: EdgeInsets.fromLTRB(
+//                                       deviceWidth / 8, 0, 0, 0),
+//                                   child: Text(
+//                                     _selectDate2[i],
+//                                     style: TextStyle(
+//                                       fontWeight: FontWeight.bold,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ),
+//                               Padding(
+//                                 padding: EdgeInsets.fromLTRB(
+//                                     0, 0, deviceWidth / 7, 0),
+//                                 child: ElevatedButton(
+//                                   onPressed: () => _selectDate(context, i),
+//                                   style: ElevatedButton.styleFrom(
+//                                     backgroundColor: const Color.fromARGB(
+//                                         255, 224, 224, 203),
+//                                   ),
+//                                   child: const Text('Tarih Seç'),
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
 //                         ),
-//                         child: const Text('İptal'),
-//                       ),
+//                       // 4 DropdownButton Widgets
+//                       for (int i = 0; i < 4; i++)
+//                         Padding(
+//                           padding: const EdgeInsets.only(bottom: 16.0),
+//                           child: DropdownButtonFormField<String>(
+//                             value: _getDropdownValue(i),
+//                             decoration: InputDecoration(
+//                               labelText: _dropdownButtonLabels[i],
+//                               border: const OutlineInputBorder(),
+//                             ),
+//                             onChanged: (String? newValue) {
+//                               setState(() {
+//                                 _setDropdownValue(i, newValue);
+//                               });
+//                             },
+//                             items: <String>[
+//                               'Option 1',
+//                               'Option 2',
+//                               'Option 3',
+//                               'Option 4'
+//                             ].map<DropdownMenuItem<String>>((String value) {
+//                               return DropdownMenuItem<String>(
+//                                 value: value,
+//                                 child: Text(value),
+//                               );
+//                             }).toList(),
+//                           ),
+//                         ),
+//                       // 5 TextFormField Widgets
+//                       for (int i = 3; i < 8; i++)
+//                         Padding(
+//                           padding: const EdgeInsets.only(bottom: 16.0),
+//                           child: TextFormField(
+//                             controller: _textControllers[i],
+//                             decoration: InputDecoration(
+//                               labelText: _textFormFieldLabels[i],
+//                               border: const OutlineInputBorder(),
+//                             ),
+//                           ),
+//                         ),
 //                     ],
 //                   ),
-//                 ],
-//               ),
+//                 ),
+//                 // Two Expanded Buttons
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                   children: [
+//                     ElevatedButton(
+//                       onPressed: () {
+//                         if (_formKey.currentState!.validate()) {
+//                           ScaffoldMessenger.of(context).showSnackBar(
+//                             const SnackBar(
+//                               content: Text('First Button Pressed'),
+//                             ),
+//                           );
+//                         }
+//                       },
+//                       style: ElevatedButton.styleFrom(
+//                         minimumSize: Size(deviceWidth / 2.5, 50),
+//                         backgroundColor:
+//                             const Color.fromARGB(255, 224, 224, 203),
+//                       ),
+//                       child: const Text('Kaydet'),
+//                     ),
+//                     ElevatedButton(
+//                       onPressed: () {
+//                         if (_formKey.currentState!.validate()) {
+//                           ScaffoldMessenger.of(context).showSnackBar(
+//                             const SnackBar(
+//                               content: Text('Second Button Pressed'),
+//                             ),
+//                           );
+//                         }
+//                       },
+//                       style: ElevatedButton.styleFrom(
+//                         minimumSize: Size(deviceWidth / 2.5, 50),
+//                         backgroundColor:
+//                             const Color.fromARGB(255, 224, 224, 203),
+//                       ),
+//                       child: const Text('Sil'),
+//                     ),
+//                   ],
+//                 ),
+//               ],
 //             ),
 //           ),
 //         ),
 //       ),
 //     );
 //   }
+
+//   String? _getDropdownValue(int index) {
+//     switch (index) {
+//       case 0:
+//         return _dropdownValue1;
+//       case 1:
+//         return _dropdownValue2;
+//       case 2:
+//         return _dropdownValue3;
+//       case 3:
+//         return _dropdownValue4;
+//       default:
+//         return null;
+//     }
+//   }
+
+//   void _setDropdownValue(int index, String? value) {
+//     switch (index) {
+//       case 0:
+//         _dropdownValue1 = value;
+//         break;
+//       case 1:
+//         _dropdownValue2 = value;
+//         break;
+//       case 2:
+//         _dropdownValue3 = value;
+//         break;
+//       case 3:
+//         _dropdownValue4 = value;
+//         break;
+//     }
+//   }
 // }
+import 'package:flutter/material.dart';
+
+class KayitEkleme5 extends StatefulWidget {
+  const KayitEkleme5({super.key, required this.title});
+  final String title;
+
+  @override
+  State<KayitEkleme5> createState() => _KayitEkleme5State();
+}
+
+class _KayitEkleme5State extends State<KayitEkleme5> {
+  final _formKey = GlobalKey<FormState>();
+
+  // Controllers for the TextFormFields
+  final List<TextEditingController> _textControllers =
+      List.generate(8, (index) => TextEditingController());
+
+  // Date variables
+  DateTime? _selectedDate1;
+  DateTime? _selectedDate2;
+  DateTime? _selectedDate3;
+
+  // Dropdown values
+  String? _dropdownValue1;
+  String? _dropdownValue2;
+  String? _dropdownValue3;
+  String? _dropdownValue4;
+
+  // Label text arrays
+  final List<String> _textFormFieldLabels = [
+    'Fiş Numarası',
+    'Cari Kodu',
+    'Cari Ünvanı',
+    'Tutar',
+    'Alınan Tutar',
+    'Kalan Tutar',
+    'Teklif',
+    'Açıklama',
+  ];
+
+  final List<String> _dropdownButtonLabels = [
+    'Bakım Anlaşması',
+    'Durum',
+    'Görüşme Durum',
+    'Ödeme Türü',
+  ];
+
+  final List<String> _selectDate2 = [
+    'Kurulum Tarihi',
+    'Tarih',
+    'Bitiş Tarih',
+  ];
+
+  Future<void> _selectDate(BuildContext context, int dateIndex) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _getDate(dateIndex)) {
+      setState(() {
+        _setDate(dateIndex, picked);
+      });
+    }
+  }
+
+  DateTime? _getDate(int index) {
+    switch (index) {
+      case 0:
+        return _selectedDate1;
+      case 1:
+        return _selectedDate2;
+      case 2:
+        return _selectedDate3;
+      default:
+        return null;
+    }
+  }
+
+  void _setDate(int index, DateTime date) {
+    switch (index) {
+      case 0:
+        _selectedDate1 = date;
+        break;
+      case 1:
+        _selectedDate2 = date;
+        break;
+      case 2:
+        _selectedDate3 = date;
+        break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 233, 233, 231),
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 224, 224, 203),
+          title: const Text(
+            'KAYIT FORMU',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      // 3 TextFormField Widgets
+                      for (int i = 0; i < 3; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: TextFormField(
+                            controller: _textControllers[i],
+                            decoration: InputDecoration(
+                              labelText: _textFormFieldLabels[i],
+                              border: const OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                      // 3 DatePicker Widgets
+                      for (int i = 0; i < 3; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      deviceWidth / 8, 0, 0, 0),
+                                  child: Text(
+                                    _selectDate2[i],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    0, 0, deviceWidth / 7, 0),
+                                child: ElevatedButton(
+                                  onPressed: () => _selectDate(context, i),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 224, 224, 203),
+                                  ),
+                                  child: const Text('Tarih Seç'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      // 4 DropdownButton Widgets with different option counts
+                      // Dropdown 1: 3 options
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _dropdownValue1,
+                          decoration: InputDecoration(
+                            labelText: _dropdownButtonLabels[0],
+                            border: const OutlineInputBorder(),
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _dropdownValue1 = newValue;
+                            });
+                          },
+                          items: ['Yeni Müşteri', 'Bakım Anlaşması Var', 'Servis Ücretli']
+                              .map<DropdownMenuItem<String>>(
+                                  (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      // Dropdown 2: 4 options
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _dropdownValue2,
+                          decoration: InputDecoration(
+                            labelText: _dropdownButtonLabels[1],
+                            border: const OutlineInputBorder(),
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _dropdownValue2 = newValue;
+                            });
+                          },
+                          items: [
+                            'Hesap Kapandı',
+                            'Hesap Kapanmadı',
+                            'Parçalı',
+                            'Bekelemede'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      // Dropdown 3: 2 options
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _dropdownValue3,
+                          decoration: InputDecoration(
+                            labelText: _dropdownButtonLabels[2],
+                            border: const OutlineInputBorder(),
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _dropdownValue3 = newValue;
+                            });
+                          },
+                          items: ['Görüşüldü', 'Görüşülmedi']
+                              .map<DropdownMenuItem<String>>(
+                                  (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      // Dropdown 4: 4 options
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _dropdownValue4,
+                          decoration: InputDecoration(
+                            labelText: _dropdownButtonLabels[3],
+                            border: const OutlineInputBorder(),
+                          ),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _dropdownValue4 = newValue;
+                            });
+                          },
+                          items: [
+                            'Nakit',
+                            'Kredi kartı',
+                            'Havale',
+                            'Mail Order'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      // 5 TextFormField Widgets
+                      for (int i = 3; i < 8; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: TextFormField(
+                            controller: _textControllers[i],
+                            decoration: InputDecoration(
+                              labelText: _textFormFieldLabels[i],
+                              border: const OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                // Two Expanded Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('First Button Pressed'),
+                            ),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
+                      ),
+                      child: const Text('Kaydet'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Second Button Pressed'),
+                            ),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(deviceWidth / 2.5, 50),
+                        backgroundColor:
+                            const Color.fromARGB(255, 224, 224, 203),
+                      ),
+                      child: const Text('Sil'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

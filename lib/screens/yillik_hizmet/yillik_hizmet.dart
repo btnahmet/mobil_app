@@ -25,7 +25,7 @@ class _YillikHizmetState extends State<YillikHizmet> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "ARIZA TAKİP",
+                  "YILLIK HİZMET",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
