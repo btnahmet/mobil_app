@@ -246,15 +246,7 @@ class _KayitEkleme3State extends State<KayitEkleme3> {
                                     return 'Lütfen bir metin girin';
                                   }
                                   return null;
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                                },),);},),),],),),
 
                 // Dört buton ekleme
                 Row(

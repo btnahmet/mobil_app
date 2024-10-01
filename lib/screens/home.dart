@@ -5,6 +5,7 @@ import 'package:mobil_app/screens/cari_destek/cari_destek.dart';
 import 'package:mobil_app/screens/cari_tanitim/cari_tanitim.dart';
 import 'package:mobil_app/screens/diger_islemler/diger_islemler.dart';
 import 'package:mobil_app/screens/raporlar/raporlar.dart';
+import 'package:mobil_app/screens/versiyon_notu/versiyon_notu.dart';
 import 'package:mobil_app/screens/yillik_hizmet/yillik_hizmet.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
-                            255, 247, 247, 240), // Buton rengi açık krem
+                              255, 247, 247, 240), // Buton rengi açık krem
                           padding: const EdgeInsets.symmetric(
                               vertical: 15), // Yüksek padding
                           textStyle: const TextStyle(
@@ -152,7 +153,8 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const YillikHizmet(title: ""),
+                              builder: (context) =>
+                                  const YillikHizmet(title: ""),
                             ),
                           );
                         },
@@ -177,7 +179,15 @@ class HomePage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const VersiyonNotu(title: ""),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
                               255, 247, 247, 240), // Buton rengi açık krem
@@ -203,7 +213,8 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DigerIslemler(title: ""),
+                              builder: (context) =>
+                                  const DigerIslemler(title: ""),
                             ),
                           );
                         },
@@ -232,7 +243,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Raporlar(title: ""),
+                              builder: (context) => const Raporlar(title: ""),
                             ),
                           );
                         },
